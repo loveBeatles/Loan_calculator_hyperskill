@@ -1,0 +1,25 @@
+from math import ceil
+
+def loan_calculator(option, principal):
+    if option == 'm':
+        monthly_payment = int(input("Enter the monthly payment:\n"))
+        repay_time = ceil(principal / monthly_payment)
+        if repay_time > 1:
+            return f"It will take {repay_time} months to repay the loan"
+        else:
+            return f"It will take {repay_time} month to repay the loan"
+    elif option == 'p':
+        number_of_months = int(input("Enter the number of months:\n"))
+        remind_test = principal % number_of_months
+        if remind_test == 0:
+            return f"Your monthly payment = {principal / number_of_months}"
+        else:
+            monthly_payment = ceil(principal / number_of_months)
+            last_payment = abs(monthly_payment * (number_of_months - 1) - principal)
+            return f"Your monthly payment = {monthly_payment} and the last payment = {last_payment}."
+    else:
+        print("You entered a wrong option, please try again.")
+
+loan_principal = int(input("Enter the loan principal:\n"))
+choice = input(f'What do you want to calculate?\ntype "m" - for number of monthly payments,\ntype "p" - for the monthly payment:\n')
+print(loan_calculator(choice, loan_principal))
